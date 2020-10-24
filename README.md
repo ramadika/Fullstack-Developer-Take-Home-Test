@@ -1,3 +1,9 @@
 # Fullstack-Developer-Take-Home-Test
 
-# Intallation Step
+## Intallation Step
+
+Use NodeJS first [here](https://nodejs.org/en/download/) and install it to your computer.
+ 
+```bash
+npm init
+```
