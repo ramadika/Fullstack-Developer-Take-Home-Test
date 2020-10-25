@@ -94,16 +94,12 @@ app.post('/transaction/purchase',(req,res)=>{
             mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
                 if(!err)
                     res.send('Transaction Successfully');
-                    // rows.forEach(element => {
-                    //     if(element.constructor == Array)
-                    //         res.send('Created Transaction ID : ' + element[0].TransactionID);
-                    // });
                 else
                     console.log(err);
             })
         }
     }else{
-        mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
+        mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket.TicketID, trn.Ticket.TicQuantity, trn.EventID],(err,rows,field)=>{
             if(!err)
                 rows.forEach(element => {
                     if(element.constructor == Array)
