@@ -84,20 +84,35 @@ app.get('/event/get_info',(req,res)=>{
     })
 })
 
-// Create Customer Transaction Data
+// Create Customer Transaction Data 
 app.post('/transaction/purchase',(req,res)=>{
-    let trn = req.body;
-    var sql = "SET @TransactionID = ?;SET @CustomerID = ?;SET @TicketID = ?;SET @TicQuantity = ?; \
-    CALL TransactionAdd(@TransactionID, @CustomerID, @TicketID, @TicQuantity);" ;
-    mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.TicketID, trn.TicQuantity],(err,rows,field)=>{
-        if(!err)
-            rows.forEach(element => {
-                if(element.constructor == Array)
-                    res.send('Created Transaction ID : ' + element[0].TransactionID);
-            });
-        else
-            console.log(err);
-    })
+    let trn = req.body; 
+    var sql = "SET @TransactionID = ?;SET @CustomerID = ?;SET @EventID = ?;SET @TicketID = ?;SET @TicQuantity = ?; \
+    CALL TransactionAdd(@TransactionID, @CustomerID, @EventID, @TicketID, @TicQuantity);" ;
+    if(trn.Ticket.length > 0){
+        for (var i=0;i < trn.Ticket.length;i++){
+            mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
+                if(!err)
+                    res.send('Transaction Successfully');
+                    // rows.forEach(element => {
+                    //     if(element.constructor == Array)
+                    //         res.send('Created Transaction ID : ' + element[0].TransactionID);
+                    // });
+                else
+                    console.log(err);
+            })
+        }
+    }else{
+        mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
+            if(!err)
+                rows.forEach(element => {
+                    if(element.constructor == Array)
+                        res.send('Created Transaction ID : ' + element[0].TransactionID);
+                });
+            else
+                console.log(err);
+        })
+    }
 })
 
 // Get Transaction Information
