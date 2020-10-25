@@ -84,11 +84,11 @@ app.get('/event/get_info',(req,res)=>{
     })
 })
 
-// Create Customer Transaction Data 
+// Create Customer Transaction Data
 app.post('/transaction/purchase',(req,res)=>{
     let trn = req.body; 
-    var sql = "SET @TransactionID = ?;SET @CustomerID = ?;SET @EventID = ?;SET @TicketID = ?;SET @TicQuantity = ?; \
-    CALL TransactionAdd(@TransactionID, @CustomerID, @EventID, @TicketID, @TicQuantity);" ;
+    var sql = "SET @TransactionID = ?;SET @CustomerID = ?;SET @TicketID = ?;SET @TicQuantity = ?;SET @EventID = ?; \
+    CALL TransactionAdd(@TransactionID, @CustomerID, @TicketID, @TicQuantity, @EventID);" ;
     if(trn.Ticket.length > 0){
         for (var i=0;i < trn.Ticket.length;i++){
             mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
