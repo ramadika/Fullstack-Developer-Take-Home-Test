@@ -30,4 +30,4 @@ $ node index.js
 
 ## Assumption 
 
-Doc of Assumption [here]()
+Doc of Assumption [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md)
