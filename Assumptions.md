@@ -15,11 +15,12 @@
 13. Customer can purchase more than 1 ticket type, and more than 1 qty per ticket type defined using multiple arrays
 14. The number of tickets when the transaction is defined with the TicQuantity
 15. The ticket quota will be reduced according to the number of tickets purchased at the time of transaction
+16. **INSERT** and **UPDATE** value stored in procedure in the Database
 
 
 ## Data Example
 
-1. Event (Add)
+1. **Event** (Add)
 
 ```javascript
 {
@@ -30,7 +31,7 @@
 }
 ```
 
-2. Event (Update)
+2. **Event** (Update)
 
 ```javascript
 {
@@ -42,7 +43,7 @@
 }
 ```
 
-3. Location (Add)
+3. **Location** (Add)
 
 ```javascript
 {
@@ -51,7 +52,7 @@
 }
 ```
 
-4. Location (Update)
+4. **Location** (Update)
 
 ```javascript
 {
@@ -61,7 +62,7 @@
 }
 ```
 
-5. Ticket (Add)
+5. **Ticket** (Add)
 
 ```javascript
 {
@@ -72,7 +73,7 @@
 }
 ```
 
-6. Ticket (Update)
+6. **Ticket** (Update)
 
 ```javascript
 {
@@ -84,7 +85,7 @@
 }
 ```
 
-7. Customer (Add)
+7. **Customer** (Add)
 
 ```javascript
 {
@@ -92,7 +93,7 @@
 }
 ```
 
-8. Customer (Update)
+8. **Customer** (Update)
 
 ```javascript
 {
@@ -101,7 +102,7 @@
 }
 ```
 
-9. Transaction (buy 1 Ticket Type)
+9. **Transaction** (buy 1 Ticket Type)
 
 ```javascript
 {
@@ -114,7 +115,7 @@
 }
 ```
 
-10. Transaction (buy more than 1 Ticket Type)
+10. **Transaction** (buy more than 1 Ticket Type)
 
 ```javascript
 {
