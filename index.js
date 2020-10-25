@@ -54,13 +54,13 @@ app.post('/location/create',(req,res)=>{
     })
 })
 
-// Create New Ticket Type on Specific Event
+// Create New Ticket Type on Specific Event 
 app.post('/event/ticket/create',(req,res)=>{
     let tic = req.body;
-    var sql = "SET @TicketID = ?;SET @TicketQuota = ?;SET @TicketPrice = ?;SET @EventID = ?; \
-    CALL TicketAdd(@TicketID, @TicketQuota, @TicketPrice, @EventID);" ;
-    mysqlconnection.query(sql,[tic.TicketID, tic.TicketQuota, tic.TicketPrice, tic.EventID],(err,rows,field)=>{
-        if(!err)
+    var sql = "SET @TicketID = ?;SET @TicketQuota = ?;SET @TicketPrice = ?;SET @EventID = ?;SET @TicketType = ?; \
+    CALL TicketAdd(@TicketID, @TicketQuota, @TicketPrice, @EventID, @TicketType);" ;
+    mysqlconnection.query(sql,[tic.TicketID, tic.TicketQuota, tic.TicketPrice, tic.EventID, tic.TicketType],(err,rows,field)=>{
+        if(!err) 
             rows.forEach(element => {
                 if(element.constructor == Array)
                     res.send('Created Ticket ID : ' + element[0].TicketID + ' on Event ID : ' + element[0].EventID);
