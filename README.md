@@ -20,9 +20,14 @@ $ npm install
 4. Start server [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test.git#Start-Server)
 5. Open Postman desktop application or Chrome web app extension that has installed before
 6. Enter request url: **localhost:3000** and followed by Relative Path to see or create Endpoint that you want
+7. To getInfo 
 
 ## Start-Server
 
 ```bash
 $ node index.js
 ```
+
+## Assumption 
+
+Doc of Assumption [here]()
