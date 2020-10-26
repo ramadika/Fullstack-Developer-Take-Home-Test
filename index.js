@@ -84,7 +84,7 @@ app.get('/event/get_info',(req,res)=>{
     })
 })
 
-// Create Customer Transaction Data
+// Create Customer Transaction Data 
 app.post('/transaction/purchase',(req,res)=>{
     let trn = req.body; 
     var sql = "SET @TransactionID = ?;SET @CustomerID = ?;SET @TicketID = ?;SET @TicQuantity = ?;SET @EventID = ?; \
