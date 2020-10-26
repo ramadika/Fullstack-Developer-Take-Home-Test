@@ -1,5 +1,6 @@
 # Assumption
 
+
 ## Environment
 
 * Event Name that was post from the Client Side in the form of a string data type
@@ -15,6 +16,8 @@
 * Customers can make multiple transactions by only selecting 1 event per transaction 
 * When making a transaction the customer can buy more than 1 type of ticket and the quantity per ticket type
 * Examples of data formats when when making transactions can be seen in Data Example [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md#Data-Example)
+* Other Info [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md#Other-Info)
+
 
 ## Data-Example
 
@@ -139,7 +142,9 @@
 }
 ```
 
-## Other Info
+
+
+## Other-Info
 
 * Add EventName which defined with a string data type, Location using LocationID in the table of Event
 * Add LocationName which defined with a string data type, Event using EventID in the table of Location
