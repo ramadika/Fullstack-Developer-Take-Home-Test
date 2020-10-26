@@ -8,8 +8,8 @@
 ## Intallation Step
 
 ```bash
-git clone https://github.com/ramadika/Fullstack-Developer-Take-Home-Test.git
-npm install
+$ git clone https://github.com/ramadika/Fullstack-Developer-Take-Home-Test.git
+$ npm install
 ```
 
 ## Run the App
@@ -25,7 +25,7 @@ npm install
 ## Start-Server
 
 ```bash
-node index.js
+$ node index.js
 ```
 
 ## Assumption 
