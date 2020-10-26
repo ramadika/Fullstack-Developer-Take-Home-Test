@@ -25,7 +25,7 @@ npm install
 ## Start-Server
 
 ```bash
-$ node index.js
+node index.js
 ```
 
 ## Assumption 
