@@ -18,6 +18,15 @@
 * Examples of data formats when when making transactions can be seen in Data Example [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md#Data-Example)
 * Other Info [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md#Other-Info)
 * The number of characters used is sufficient to meet the desired needs
+* Only input text or number that has character length validation
+* Inputs that have validation include :
+    * Event Name
+    * Location Name
+    * Ticket Quota
+    * Ticket Price
+    * Ticket Type
+    * Ticket ID (Table of Transaction)
+    * Ticket Quantity 
 
 
 
@@ -167,5 +176,5 @@
 * Customer can purchase more than 1 ticket type, and more than 1 qty per ticket type defined using multiple arrays
 * The number of tickets when the transaction is defined with the TicQuantity
 * The ticket quota will be reduced according to the number of tickets purchased at the time of transaction
-* From the server side, input that exceeds the maximum number of characters will be automatically reduced the number of characters. So that the data will still be stored with the maximum number of characters
+* From the server side there is a warning if the input exceeds the maximum number of characters
 * **INSERT** and **UPDATE** value stored in procedure in the Database

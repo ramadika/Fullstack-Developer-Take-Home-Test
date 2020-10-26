@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const express = require('express');
 const bodyparser = require('body-parser');
+const e = require('express');
 var app = express();
 
 app.use(bodyparser.json());
@@ -27,15 +28,21 @@ app.post('/event/create',(req,res)=>{
     let evn = req.body;
     var sql = "SET @EventID = ?;SET @EventName = ?;SET @StartDate = ?;SET @EndDate = ?;SET @LocationID = ?; \
     CALL EventAdd(@EventID, @EventName, @StartDate, @EndDate, @LocationID);" ;
-    mysqlconnection.query(sql,[evn.EventID, evn.EventName, evn.StartDate, evn.EndDate, evn.LocationID],(err,rows,field)=>{
-        if(!err)
-            rows.forEach(element => {
-                if(element.constructor == Array)
-                    res.send('Created Event ID : ' + element[0].EventID);
-            });
-        else
-            console.log(err);
-    })
+    var lghEvnName = evn.EventName;
+    if (lghEvnName.length > 45){
+        console.log('Maximum Length');
+    }else{
+        console.log('Length Clear');
+        mysqlconnection.query(sql,[evn.EventID, evn.EventName, evn.StartDate, evn.EndDate, evn.LocationID],(err,rows,field)=>{
+            if(!err)
+                rows.forEach(element => {
+                    if(element.constructor == Array)
+                        res.send('Created Event ID : ' + element[0].EventID);
+                });
+            else
+                console.log(err);
+        })
+    }
 })
 
 // Create New Location
@@ -43,15 +50,21 @@ app.post('/location/create',(req,res)=>{
     let loc = req.body;
     var sql = "SET @LocationID = ?;SET @LocationName = ?;SET @EventID = ?; \
     CALL LocationAdd(@LocationID, @LocationName, @EventID);" ;
-    mysqlconnection.query(sql,[loc.LocationID, loc.LocationName, loc.EventID],(err,rows,field)=>{
-        if(!err)
-            rows.forEach(element => {
-                if(element.constructor == Array)
-                    res.send('Created Location ID : ' + element[0].LocationID);
-            });
-        else
-            console.log(err);
-    })
+    var lghLocName = loc.LocationName;
+    if (lghLocName.length > 45){
+        console.log('Maximum Length');
+    }else{
+        console.log('Length Clear');
+        mysqlconnection.query(sql,[loc.LocationID, loc.LocationName, loc.EventID],(err,rows,field)=>{
+            if(!err)
+                rows.forEach(element => {
+                    if(element.constructor == Array)
+                        res.send('Created Location ID : ' + element[0].LocationID);
+                });
+            else
+                console.log(err);
+        })
+    }
 })
 
 // Create New Ticket Type on Specific Event 
@@ -59,15 +72,23 @@ app.post('/event/ticket/create',(req,res)=>{
     let tic = req.body;
     var sql = "SET @TicketID = ?;SET @TicketQuota = ?;SET @TicketPrice = ?;SET @EventID = ?;SET @TicketType = ?; \
     CALL TicketAdd(@TicketID, @TicketQuota, @TicketPrice, @EventID, @TicketType);" ;
-    mysqlconnection.query(sql,[tic.TicketID, tic.TicketQuota, tic.TicketPrice, tic.EventID, tic.TicketType],(err,rows,field)=>{
-        if(!err) 
-            rows.forEach(element => {
-                if(element.constructor == Array)
-                    res.send('Created Ticket ID : ' + element[0].TicketID + ' on Event ID : ' + element[0].EventID);
-            });
-        else
-            console.log(err);
-    })
+    var lghTicQuota = tic.TicketQuota;
+    var lghTicPrice = tic.TicketPrice;
+    var lghTicType = tic.TicketType;
+    if(lghTicType.length > 45 || lghTicQuota.toString().length > 10 || lghTicPrice.toString().length > 10){
+        console.log('Maximum Length');
+    }else{
+        console.log('Length Clear');
+        mysqlconnection.query(sql,[tic.TicketID, tic.TicketQuota, tic.TicketPrice, tic.EventID, tic.TicketType],(err,rows,field)=>{
+            if(!err) 
+                rows.forEach(element => {
+                    if(element.constructor == Array)
+                        res.send('Created Ticket ID : ' + element[0].TicketID + ' on Event ID : ' + element[0].EventID);
+                });
+            else
+                console.log(err);
+        })
+    }
 })
 
 
@@ -91,23 +112,37 @@ app.post('/transaction/purchase',(req,res)=>{
     CALL TransactionAdd(@TransactionID, @CustomerID, @TicketID, @TicQuantity, @EventID);" ;
     if(trn.Ticket.length > 0){
         for (var i=0;i < trn.Ticket.length;i++){
-            mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
+            var lghTrnID = trn.Ticket[i].TicketID;
+            var lghTrnQuantity = trn.Ticket[i].TicQuantity;
+            if(lghTrnID.toString().length > 10 || lghTrnQuantity.toString().length > 10){
+                console.log('Maximum Length');
+            }else{
+                console.log('Length Clear');
+                mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
+                    if(!err)
+                        res.send('Transaction Successfully');
+                    else
+                        console.log(err);
+                })
+            }
+        }
+    }else{
+        var lghTrnID = trn.Ticket.TicketID;
+        var lghTrnQuantity = trn.Ticket.TicQuantity;
+        if(lghTrnID.toString().length > 10 || lghTrnQuantity.toString().length > 10){
+            console.log('Maximum Length');
+        }else{
+            console.log('Length Clear');
+            mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket.TicketID, trn.Ticket.TicQuantity, trn.EventID],(err,rows,field)=>{
                 if(!err)
-                    res.send('Transaction Successfully');
+                    rows.forEach(element => {
+                        if(element.constructor == Array)
+                            res.send('Created Transaction ID : ' + element[0].TransactionID);
+                    });
                 else
                     console.log(err);
             })
         }
-    }else{
-        mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket.TicketID, trn.Ticket.TicQuantity, trn.EventID],(err,rows,field)=>{
-            if(!err)
-                rows.forEach(element => {
-                    if(element.constructor == Array)
-                        res.send('Created Transaction ID : ' + element[0].TransactionID);
-                });
-            else
-                console.log(err);
-        })
     }
 })
 
