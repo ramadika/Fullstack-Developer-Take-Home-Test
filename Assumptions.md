@@ -19,6 +19,8 @@
 * Other Info [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md#Other-Info)
 
 
+
+
 ## Data-Example
 
 * **Event** (Add)
@@ -141,6 +143,8 @@
 	"EventID": 4 /*ID of Event*/
 }
 ```
+
+
 
 
 
