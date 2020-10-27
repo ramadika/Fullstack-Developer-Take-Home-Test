@@ -27,7 +27,7 @@
     * Ticket Type
     * Ticket ID (Table of Transaction)
     * Ticket Quantity 
-* Inputs that cannot NULL include :
+* The inputs that must be filled in include :
     * Customer ID
     * Event ID
     * Location ID
