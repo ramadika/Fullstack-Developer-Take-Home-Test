@@ -1,11 +1,20 @@
+// Import Mysql Package
 const mysql = require('mysql');
+
+// Import Express Package
 const express = require('express');
+
+// Import Body-Parser Package
 const bodyparser = require('body-parser');
-const e = require('express');
+
+
+// Start the Express Server
 var app = express(); 
 
+// Access JSON Data
 app.use(bodyparser.json());
 
+// Create a Mysql Connection
 var mysqlconnection = mysql.createConnection({
     host:'127.0.0.1',
     user:'root',
@@ -14,6 +23,7 @@ var mysqlconnection = mysql.createConnection({
     multipleStatements :true
 });
 
+// Connect to Database
 mysqlconnection.connect((err)=>{
     if(!err)
         console.log('DB Connection Succeded');
@@ -21,7 +31,10 @@ mysqlconnection.connect((err)=>{
         console.log('DB Connection failed \n Error : ' + JSON.stringify(err,undefined,2));
 });
 
+// Start the server
 app.listen(3000,()=>console.log('Express Server is running at port: 3000'));
+
+
 
 // Create New Event   
 app.post('/event/create',(req,res)=>{
