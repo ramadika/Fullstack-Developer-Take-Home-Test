@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2020 at 10:46 AM
+-- Generation Time: Oct 27, 2020 at 07:54 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -159,7 +159,7 @@ INSERT INTO `event` (`EventID`, `EventName`, `StartDate`, `EndDate`, `LocationID
 (1, 'The Next', '2020-10-12', '2020-10-13', 4),
 (2, 'Gain Power', '2020-10-05', '2020-10-12', 1),
 (3, 'Eat Champ', '2020-09-01', '2020-09-12', 3),
-(4, 'Your Journey', '2020-10-05', '2020-10-12', 4);
+(4, 'YourJourney', '2020-10-05', '2020-10-12', 4);
 
 -- --------------------------------------------------------
 
@@ -202,9 +202,9 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`TicketID`, `TicketQuota`, `TicketPrice`, `EventID`, `TicketType`) VALUES
-(1, 9, 30000, 1, 'Gold'),
-(2, 7, 10000, 1, 'Silver'),
-(3, 8, 5000, 2, 'Bronze'),
+(1, 5, 30000, 1, 'Gold'),
+(2, 5, 10000, 1, 'Silver'),
+(3, 3, 5000, 2, 'Bronze'),
 (13, 10, 150000, 2, 'Premium'),
 (14, 4, 300000, 1, 'Exclusive'),
 (16, 3, 345000, 1, 'Wow');
@@ -280,19 +280,19 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `LocationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `LocationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `TicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `TicketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `transaction`
