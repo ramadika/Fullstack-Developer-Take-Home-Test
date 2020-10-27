@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const bodyparser = require('body-parser');
 const e = require('express');
-var app = express();
+var app = express(); 
 
 app.use(bodyparser.json());
 
@@ -23,71 +23,71 @@ mysqlconnection.connect((err)=>{
 
 app.listen(3000,()=>console.log('Express Server is running at port: 3000'));
 
-// Create New Event 
+// Create New Event   
 app.post('/event/create',(req,res)=>{
     let evn = req.body;
     var sql = "SET @EventID = ?;SET @EventName = ?;SET @StartDate = ?;SET @EndDate = ?;SET @LocationID = ?; \
     CALL EventAdd(@EventID, @EventName, @StartDate, @EndDate, @LocationID);" ;
-    var lghEvnName = evn.EventName;
-    if (lghEvnName.length > 45){
-        console.log('Maximum Length');
-    }else{
-        console.log('Length Clear');
-        mysqlconnection.query(sql,[evn.EventID, evn.EventName, evn.StartDate, evn.EndDate, evn.LocationID],(err,rows,field)=>{
-            if(!err)
-                rows.forEach(element => {
-                    if(element.constructor == Array)
-                        res.send('Created Event ID : ' + element[0].EventID);
-                });
-            else
-                console.log(err);
-        })
+    for (var i=0;i < evn.Event.length;i++){
+        var lghEvnName = evn.Event[i].EventName;
+        if (lghEvnName.length > 45){
+            console.log('Maximum Length');
+        }else{
+            console.log('Length Clear');
+            mysqlconnection.query(sql,[evn.Event[i].EventID, evn.Event[i].EventName, evn.Event[i].StartDate, evn.Event[i].EndDate, evn.Event[i].LocationID],(err,rows,field)=>{
+                if(!err)
+                    res.send('Event Created');
+                else
+                    res.send('Something Wrong');
+                    console.log(err);
+            })
+        }
     }
 })
 
 // Create New Location
-app.post('/location/create',(req,res)=>{
+app.post('/location/create',(req,res)=>{ 
     let loc = req.body;
     var sql = "SET @LocationID = ?;SET @LocationName = ?;SET @EventID = ?; \
     CALL LocationAdd(@LocationID, @LocationName, @EventID);" ;
-    var lghLocName = loc.LocationName;
-    if (lghLocName.length > 45){
-        console.log('Maximum Length');
-    }else{
-        console.log('Length Clear');
-        mysqlconnection.query(sql,[loc.LocationID, loc.LocationName, loc.EventID],(err,rows,field)=>{
-            if(!err)
-                rows.forEach(element => {
-                    if(element.constructor == Array)
-                        res.send('Created Location ID : ' + element[0].LocationID);
-                });
-            else
-                console.log(err);
-        })
+    for(var i=0;i < loc.Location.length;i++){
+        var lghLocName = loc.Location[i].LocationName;
+        if (lghLocName.length > 45){
+            console.log('Maximum Length');
+        }else{
+            console.log('Length Clear');
+            mysqlconnection.query(sql,[loc.Location[i].LocationID, loc.Location[i].LocationName, loc.Location[i].EventID],(err,rows,field)=>{
+                if(!err)
+                    res.send('Location Created');
+                else
+                    res.send('Something Wrong');
+                    console.log(err);
+            })
+        }
     }
 })
 
-// Create New Ticket Type on Specific Event 
+// Create New Ticket Type on Specific Event
 app.post('/event/ticket/create',(req,res)=>{
     let tic = req.body;
     var sql = "SET @TicketID = ?;SET @TicketQuota = ?;SET @TicketPrice = ?;SET @EventID = ?;SET @TicketType = ?; \
     CALL TicketAdd(@TicketID, @TicketQuota, @TicketPrice, @EventID, @TicketType);" ;
-    var lghTicQuota = tic.TicketQuota;
-    var lghTicPrice = tic.TicketPrice;
-    var lghTicType = tic.TicketType;
-    if(lghTicType.length > 45 || lghTicQuota.toString().length > 10 || lghTicPrice.toString().length > 10){
-        console.log('Maximum Length');
-    }else{
-        console.log('Length Clear');
-        mysqlconnection.query(sql,[tic.TicketID, tic.TicketQuota, tic.TicketPrice, tic.EventID, tic.TicketType],(err,rows,field)=>{
-            if(!err) 
-                rows.forEach(element => {
-                    if(element.constructor == Array)
-                        res.send('Created Ticket ID : ' + element[0].TicketID + ' on Event ID : ' + element[0].EventID);
-                });
-            else
-                console.log(err);
-        })
+    for(var i=0;i < tic.Ticket.length;i++){
+        var lghTicQuota = tic.Ticket[i].TicketQuota;
+        var lghTicPrice = tic.Ticket[i].TicketPrice;
+        var lghTicType = tic.Ticket[i].TicketType;
+        if(lghTicType.length > 45 || lghTicQuota.toString().length > 10 || lghTicPrice.toString().length > 10){
+            console.log('Maximum Length');
+        }else{
+            console.log('Length Clear');
+            mysqlconnection.query(sql,[tic.Ticket[i].TicketID, tic.Ticket[i].TicketQuota, tic.Ticket[i].TicketPrice, tic.Ticket[i].EventID, tic.Ticket[i].TicketType],(err,rows,field)=>{
+                if(!err) 
+                    res.send('Ticket Created');
+                else
+                    res.send('Something Wrong');
+                    console.log(err);
+            })
+        }
     }
 })
 
@@ -110,45 +110,46 @@ app.post('/transaction/purchase',(req,res)=>{
     let trn = req.body; 
     var sql = "SET @TransactionID = ?;SET @CustomerID = ?;SET @TicketID = ?;SET @TicQuantity = ?;SET @EventID = ?; \
     CALL TransactionAdd(@TransactionID, @CustomerID, @TicketID, @TicQuantity, @EventID);" ;
-    if(trn.Ticket.length > 0){
-        for (var i=0;i < trn.Ticket.length;i++){
-            var lghTrnID = trn.Ticket[i].TicketID;
-            var lghTrnQuantity = trn.Ticket[i].TicQuantity;
+    for(var j=0;j < trn.Transaction.length;j++){
+        if(trn.Transaction[j].Ticket.length > 0){
+            for (var i=0;i < trn.Transaction[j].Ticket.length;i++){
+                var lghTrnID = trn.Transaction[j].Ticket[i].TicketID;
+                var lghTrnQuantity = trn.Transaction[j].Ticket[i].TicQuantity;
+                if(lghTrnID.toString().length > 10 || lghTrnQuantity.toString().length > 10){
+                    console.log('Maximum Length');
+                }else{
+                    console.log('Length Clear');
+                    mysqlconnection.query(sql,[trn.Transaction[j].TransactionID, trn.Transaction[j].CustomerID, trn.Transaction[j].Ticket[i].TicketID, trn.Transaction[j].Ticket[i].TicQuantity, trn.Transaction[j].EventID],(err,rows,field)=>{
+                        if(!err)
+                            res.send('Transaction Successfully');
+                        else
+                            res.send('Something Wrong');
+                            console.log(err);
+                    })
+                }
+            }
+        }else{
+            var lghTrnID = trn.Transaction[j].Ticket.TicketID;
+            var lghTrnQuantity = trn.Transaction[j].Ticket.TicQuantity;
             if(lghTrnID.toString().length > 10 || lghTrnQuantity.toString().length > 10){
                 console.log('Maximum Length');
             }else{
                 console.log('Length Clear');
-                mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket[i].TicketID, trn.Ticket[i].TicQuantity, trn.EventID],(err,rows,field)=>{
+                mysqlconnection.query(sql,[trn.Transaction[j].TransactionID, trn.Transaction[j].CustomerID, trn.Transaction[j].Ticket.TicketID, trn.Transaction[j].Ticket.TicQuantity, trn.Transaction[j].EventID],(err,rows,field)=>{
                     if(!err)
                         res.send('Transaction Successfully');
                     else
+                        res.send('Something Wrong');
                         console.log(err);
                 })
             }
-        }
-    }else{
-        var lghTrnID = trn.Ticket.TicketID;
-        var lghTrnQuantity = trn.Ticket.TicQuantity;
-        if(lghTrnID.toString().length > 10 || lghTrnQuantity.toString().length > 10){
-            console.log('Maximum Length');
-        }else{
-            console.log('Length Clear');
-            mysqlconnection.query(sql,[trn.TransactionID, trn.CustomerID, trn.Ticket.TicketID, trn.Ticket.TicQuantity, trn.EventID],(err,rows,field)=>{
-                if(!err)
-                    rows.forEach(element => {
-                        if(element.constructor == Array)
-                            res.send('Created Transaction ID : ' + element[0].TransactionID);
-                    });
-                else
-                    console.log(err);
-            })
         }
     }
 })
 
 // Get Transaction Information
 app.get('/transaction/get_info',(req,res)=>{
-    mysqlconnection.query('SELECT a.TransactionID, a.TicQuantity, b.CustomerName, c.TicketType \
+    mysqlconnection.query('SELECT a.TransactionID, a.ID, a.TicQuantity, b.CustomerName, c.TicketType \
     FROM transaction a \
     LEFT JOIN customers b on a.CustomerID = b.CustomerID \
     LEFT JOIN ticket c on a.TicketID = c.TicketID',(err,rows,field)=>{

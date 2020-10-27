@@ -33,14 +33,35 @@
 
 ## Data-Example
 
-* **Event** (Add)
+* **Event** (Add - 1 Event)
 
 ```javascript
 {
-    "EventName": "YourEvent",
-    "StartDate": "YYYY-MM-DD",
-    "EndDate": "YYYY-MM-DD",
-    "LocationID": 1 /*ID of Location*/
+    "Event":[{
+        "EventName": "YourEvent",
+        "StartDate": "YYYY-MM-DD",
+        "EndDate": "YYYY-MM-DD",
+        "LocationID": 1 /*ID of Location*/
+    }]
+}
+```
+
+* **Event** (Add - More than 1 Event)
+
+```javascript
+{
+    "Event":[{
+        "EventName": "YourEvent",
+        "StartDate": "YYYY-MM-DD",
+        "EndDate": "YYYY-MM-DD",
+        "LocationID": 1 /*ID of Location*/
+    },
+    {
+        "EventName": "YourEvent2",
+        "StartDate": "YYYY-MM-DD",
+        "EndDate": "YYYY-MM-DD",
+        "LocationID": 2 /*ID of Location*/
+    }]
 }
 ```
 
@@ -48,11 +69,13 @@
 
 ```javascript
 {
-    "EventID": 1, /*ID of Event*/
-    "EventName": "YourEvent",
-    "StartDate": "YYYY-MM-DD",
-    "EndDate": "YYYY-MM-DD",
-    "LocationID": 1 /*ID of Location*/
+    "Event":[{
+        "EventID": 1, /*ID of Event*/
+        "EventName": "YourEvent",
+        "StartDate": "YYYY-MM-DD",
+        "EndDate": "YYYY-MM-DD",
+        "LocationID": 1 /*ID of Location*/
+    }]
 }
 ```
 
@@ -60,8 +83,10 @@
 
 ```javascript
 {
-    "LocationName": "YourLocation",
-    "EventID": "1" /*ID of Event*/
+    "Location":[{
+        "LocationName": "YourLocation",
+        "EventID": "1" /*ID of Event*/
+    }]
 }
 ```
 
@@ -69,8 +94,26 @@
 
 ```javascript
 {
-    "LocationName": "YourLocation",
-    "EventID": "1-2" /*ID of Event*/
+    "Location":[{
+        "LocationName": "YourLocation",
+        "EventID": "1-2" /*ID of Event*/
+    }]
+}
+```
+
+
+* **Location** (Add - More than 1 Location)
+
+```javascript
+{
+    "Location":[{
+        "LocationName": "YourLocation",
+        "EventID": "1" /*ID of Event*/
+    },
+    {
+        "LocationName": "YourLocation2",
+        "EventID": "1-2" /*ID of Event*/
+    }]
 }
 ```
 
@@ -78,20 +121,43 @@
 
 ```javascript
 {
-    "LocationID": 1, /*ID of Location*/
-    "LocationName": "YourLocation",
-    "EventID": "1" /*ID of Event*/
+    "Location":[{
+        "LocationID": 1, /*ID of Location*/
+        "LocationName": "YourLocation",
+        "EventID": "1" /*ID of Event*/
+    }]
 }
 ```
 
-* **Ticket** (Add)
+* **Ticket** (Add - 1 Ticket)
 
 ```javascript
 {
-    "TicketQuota": 1, /*Number of Ticket*/
-    "TicketPrice": 100000, /*Price of Ticket*/
-    "EventID": 1, /*ID of Event*/
-    "TicketType": "TypeofTicket"
+    "Ticket":[{
+        "TicketQuota": 1, /*Number of Ticket*/
+        "TicketPrice": 100000, /*Price of Ticket*/
+        "EventID": 1, /*ID of Event*/
+        "TicketType": "TypeofTicket"
+    }]
+}
+```
+
+* **Ticket** (Add - More than 1 Ticket)
+
+```javascript
+{
+    "Ticket":[{
+        "TicketQuota": 1, /*Number of Ticket*/
+        "TicketPrice": 100000, /*Price of Ticket*/
+        "EventID": 1, /*ID of Event*/
+        "TicketType": "TypeofTicket"
+    },
+    {
+        "TicketQuota": 1, /*Number of Ticket*/
+        "TicketPrice": 100000, /*Price of Ticket*/
+        "EventID": 1, /*ID of Event*/
+        "TicketType": "TypeofTicket2"
+    }]
 }
 ```
 
@@ -99,28 +165,13 @@
 
 ```javascript
 {
-    "TicketID": 1, /*ID of Ticket*/
-    "TicketQuota": 1, /*Number of Ticket*/
-    "TicketPrice": 100000, /*Price of Ticket*/
-    "EventID": 1, /*ID of Event*/
-    "TicketType": "TypeofTicket"
-}
-```
-
-* **Customer** (Add)
-
-```javascript
-{
-    "CustomerName": "YourCustomerName"
-}
-```
-
-* **Customer** (Update)
-
-```javascript
-{
-    "CustomerID": 1, /*ID of Customer*/
-    "CustomerName": "YourCustomerName"
+    "Ticket":[{
+        "TicketID": 1, /*ID of Ticket*/
+        "TicketQuota": 1, /*Number of Ticket*/
+        "TicketPrice": 100000, /*Price of Ticket*/
+        "EventID": 1, /*ID of Event*/
+        "TicketType": "TypeofTicket"
+    }]
 }
 ```
 
@@ -128,32 +179,66 @@
 
 ```javascript
 {
-	"CustomerID": 2, /*ID of Customer*/
-	"Ticket":{
-		"TicketID": 3, /*ID of Ticket*/
-		"TicQuantity": 1 /*Number of Tickets Purchased*/
-	},
-	"EventID": 4 /*ID of Event*/
+    "Transaction":[{
+        "CustomerID": 2, /*ID of Customer*/
+        "Ticket":{
+            "TicketID": 3, /*ID of Ticket*/
+            "TicQuantity": 1 /*Number of Tickets Purchased*/
+        },
+        "EventID": 4 /*ID of Event*/
+    }]
 }
+
 ```
 
 * **Transaction** (buy more than 1 Ticket Type)
 
 ```javascript
 {
-	"CustomerID": 2, /*ID of Customer*/
-	"Ticket":[{
-		"TicketID": 3, /*ID of Ticket*/
-		"TicQuantity": 1 /*Number of Tickets Purchased*/
-	},
-	{
-		"TicketID": 2, /*ID of Ticket*/
-		"TicQuantity": 3 /*Number of Tickets Purchased*/
-	}],
-	"EventID": 4 /*ID of Event*/
+	"Transaction":[{
+		"CustomerID": 1, /*ID of Customer*/
+		"Ticket":[{
+			"TicketID": 1, /*ID of Ticket*/
+			"TicQuantity": 1 /*Number of Tickets Purchased*/
+		},
+		{
+			"TicketID": 2, /*ID of Ticket*/ 
+			"TicQuantity": 2 /*Number of Tickets Purchased*/
+		}],
+		"EventID": 2 /*ID of Event*/ 
+	}]
 }
 ```
 
+* **Transaction** (More Than 1 transaction)
+
+```javascript
+{
+	"Transaction":[{
+		"CustomerID": 1, /*ID of Customer*/
+		"Ticket":[{
+			"TicketID": 1, /*ID of Ticket*/
+			"TicQuantity": 1 /*Number of Tickets Purchased*/ 
+		},
+		{
+			"TicketID": 2, /*ID of Ticket*/ 
+			"TicQuantity": 2 /*Number of Tickets Purchased*/
+		}],
+		"EventID": 1 /*ID of Event*/ 
+    },
+    {
+		"CustomerID": 2, /*ID of Customer*/
+		"Ticket":[{
+			"TicketID": 3, /*ID of Ticket*/
+			"TicQuantity": 3 /*Number of Tickets Purchased*/  
+		},
+		{
+			"TicketID": 4, /*ID of Ticket*/ 
+			"TicQuantity": 4 /*Number of Tickets Purchased*/ 
+		}],
+		"EventID": 2 /*ID of Event*/  
+	}]
+}
 
 
 
