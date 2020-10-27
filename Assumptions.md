@@ -48,7 +48,7 @@
 
 * **Event** (Add - More than 1 Event)
 
-```json
+```javascript
 {
     "Event":[{
         "EventName": "YourEvent",
@@ -67,7 +67,7 @@
 
 * **Event** (Update)
 
-```json
+```javascript
 {
     "Event":[{
         "EventID": 1, /*ID of Event*/
@@ -81,7 +81,7 @@
 
 * **Location** (Add - 1 Event)
 
-```json
+```javascript
 {
     "Location":[{
         "LocationName": "YourLocation",
@@ -92,7 +92,7 @@
 
 * **Location** (Add - More than 1 event)
 
-```json
+```javascript
 {
     "Location":[{
         "LocationName": "YourLocation",
@@ -104,7 +104,7 @@
 
 * **Location** (Add - More than 1 Location)
 
-```json
+```javascript
 {
     "Location":[{
         "LocationName": "YourLocation",
@@ -119,7 +119,7 @@
 
 * **Location** (Update - 1 Event)
 
-```json
+```javascript
 {
     "Location":[{
         "LocationID": 1, /*ID of Location*/
@@ -131,7 +131,7 @@
 
 * **Ticket** (Add - 1 Ticket)
 
-```json
+```javascript
 {
     "Ticket":[{
         "TicketQuota": 1, /*Number of Ticket*/
@@ -144,7 +144,7 @@
 
 * **Ticket** (Add - More than 1 Ticket)
 
-```json
+```javascript
 {
     "Ticket":[{
         "TicketQuota": 1, /*Number of Ticket*/
@@ -163,7 +163,7 @@
 
 * **Ticket** (Update)
 
-```json
+```javascript
 {
     "Ticket":[{
         "TicketID": 1, /*ID of Ticket*/
@@ -177,7 +177,7 @@
 
 * **Transaction** (buy 1 Ticket Type)
 
-```json
+```javascript
 {
     "Transaction":[{
         "CustomerID": 2, /*ID of Customer*/
@@ -192,7 +192,7 @@
 
 * **Transaction** (buy more than 1 Ticket Type)
 
-```json
+```javascript
 {
 	"Transaction":[{
 		"CustomerID": 1, /*ID of Customer*/
@@ -211,7 +211,7 @@
 
 * **Transaction** (More Than 1 transaction)
 
-```json
+```javascript
 {
 	"Transaction":[{
 		"CustomerID": 1, /*ID of Customer*/
