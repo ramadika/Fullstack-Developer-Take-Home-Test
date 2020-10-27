@@ -188,7 +188,6 @@
         "EventID": 4 /*ID of Event*/
     }]
 }
-
 ```
 
 * **Transaction** (buy more than 1 Ticket Type)
@@ -239,6 +238,7 @@
 		"EventID": 2 /*ID of Event*/  
 	}]
 }
+```
 
 
 
