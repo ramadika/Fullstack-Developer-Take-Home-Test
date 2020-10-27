@@ -30,9 +30,9 @@ $ node index.js
 
 ## Database
 
-Database [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/reservationdb.sql)
-ER Diagram [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/ERDiagram.jpg)
+* Database [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/reservationdb.sql)
+* ER Diagram [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/ERDiagram.jpg)
 
 ## Assumption 
 
-Doc of Assumption [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md)
+* Doc of Assumption [here](https://github.com/ramadika/Fullstack-Developer-Take-Home-Test/blob/master/Assumptions.md)
