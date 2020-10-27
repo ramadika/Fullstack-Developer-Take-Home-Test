@@ -35,7 +35,7 @@
 
 * **Event** (Add - 1 Event)
 
-```json
+```javascript
 {
     "Event":[{
         "EventName": "YourEvent",
