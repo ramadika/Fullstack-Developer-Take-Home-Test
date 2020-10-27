@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 07:54 AM
+-- Generation Time: Oct 27, 2020 at 09:56 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -204,7 +204,7 @@ CREATE TABLE `ticket` (
 INSERT INTO `ticket` (`TicketID`, `TicketQuota`, `TicketPrice`, `EventID`, `TicketType`) VALUES
 (1, 5, 30000, 1, 'Gold'),
 (2, 5, 10000, 1, 'Silver'),
-(3, 3, 5000, 2, 'Bronze'),
+(3, -1, 5000, 2, 'Bronze'),
 (13, 10, 150000, 2, 'Premium'),
 (14, 4, 300000, 1, 'Exclusive'),
 (16, 3, 345000, 1, 'Wow');
@@ -280,13 +280,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `EventID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `LocationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `LocationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ticket`
